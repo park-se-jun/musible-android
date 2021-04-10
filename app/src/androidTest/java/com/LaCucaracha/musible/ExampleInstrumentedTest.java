@@ -1,4 +1,4 @@
-package com.LaCucaracha.musible;
+package com.lacucaracha.musible;
 
 import android.content.Context;
 

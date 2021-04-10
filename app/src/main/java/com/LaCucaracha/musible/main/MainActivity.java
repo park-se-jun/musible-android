@@ -1,8 +1,8 @@
-package com.LaCucaracha.musible.activity;
+package com.lacucaracha.musible.main;
 
 import android.os.Bundle;
 
-import com.LaCucaracha.musible.R;
+import com.lacucaracha.musible.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

@@ -3,26 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/SecondFragment">
+    app:startDestination="@id/sheetListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.lacucaracha.musible.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/sheetListFragment"
+        android:name="com.lacucaracha.musible.sheetlist.SheetListFragment"
+        android:label="sheet_list_fragment"
+        tools:layout="@layout/sheet_list_fragment" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_sheetListFragment_to_sheetDetailFragment"
+            app:destination="@id/sheetDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.lacucaracha.musible.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+        android:id="@+id/sheetDetailFragment"
+        android:name="com.lacucaracha.musible.sheetdetail.SheetDetailFragment"
+        android:label="sheet_detail_fragment"
+        tools:layout="@layout/sheet_detail_fragment" />
 </navigation>

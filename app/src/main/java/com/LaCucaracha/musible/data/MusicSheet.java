@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
-@Entity(tableName="sheets",indices = {@Index(value={"title"},unique = true)})
+@Entity(tableName="sheet_table",indices = {@Index(value={"title"},unique = true)})
 public final class MusicSheet {
     @PrimaryKey
     @NonNull

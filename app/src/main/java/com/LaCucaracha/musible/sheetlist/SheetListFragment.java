@@ -16,8 +16,9 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lacucaracha.musible.R;
+import com.lacucaracha.musible.ViewModelFactory;
 
-public class SheetListFragment extends Fragment {
+ public class SheetListFragment extends Fragment {
 
     private SheetListViewModel mViewModel;
 
@@ -34,7 +35,9 @@ public class SheetListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SheetListViewModel.class);
+        mViewModel = new ViewModelProvider(this,
+                ViewModelFactory.getInstance(this.getActivity().getApplication()))
+                .get(SheetListViewModel.class);
         setupFab();
         // TODO: Use the ViewModel
     }

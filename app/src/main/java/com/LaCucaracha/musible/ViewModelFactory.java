@@ -40,5 +40,4 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         throw new IllegalArgumentException("Unknown ViewModel class:" + modelClass.getName());
     }
 
-
 }

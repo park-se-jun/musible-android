@@ -14,4 +14,6 @@
     <string name="menu_filter">Filter</string>
     <string name="nav_linear">linear</string>
     <string name="nav_grid">grid</string>
+    <string name="action_gallery">gallery</string>
+    <string name="action_camera">camera</string>
 </resources>

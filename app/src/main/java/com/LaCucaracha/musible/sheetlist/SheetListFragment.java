@@ -75,7 +75,7 @@ import com.lacucaracha.musible.ViewModelFactory;
     }
 
     private void navigateToAddImage(View v){
-        Navigation.findNavController(v).navigate(R.id.action_sheetListFragment_to_sheetDetailFragment);
+        Navigation.findNavController(v).navigate(R.id.action_sheetListFragment_to_imageListDialogFragment);
     }
 
     private void showFilteringPopUpMenu(){

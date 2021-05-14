@@ -53,11 +53,11 @@ public class ActionListDialogFragment extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.textView).setOnClickListener(v->{
-                    Toast.makeText(this.)
+                    Toast.makeText(getContext(),"갤러리",Toast.LENGTH_SHORT).show();
                 }
         );
         view.findViewById(R.id.textView2).setOnClickListener(v->{
-
+            Toast.makeText(getContext(),"카메라",Toast.LENGTH_SHORT).show();
         });
     }
 }

@@ -3,6 +3,7 @@
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,11 @@ import android.widget.PopupMenu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lacucaracha.musible.R;
 import com.lacucaracha.musible.ViewModelFactory;
+
+import java.util.List;
+
+import gun0912.tedbottompicker.TedBottomPicker;
+import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
 
  public class SheetListFragment extends Fragment {
 
@@ -69,13 +75,24 @@ import com.lacucaracha.musible.ViewModelFactory;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToAddImage(v);
+                popUpSelectImageDialog();
             }
         });
     }
 
-    private void navigateToAddImage(View v){
-        Navigation.findNavController(v).navigate(R.id.action_sheetListFragment_to_imageListDialogFragment);
+    private void popUpSelectImageDialog(){
+        TedBottomPicker.with(getActivity())
+                .setPeekHeight(1600)
+                .showTitle(false)
+                .setCompleteButtonText("선택")
+                .setEmptySelectionText("선택된 사진이 없습니다.미디파일로 바꿀 사진을 순서대로 선택해 주세요")
+                .showMultiImage(new TedBottomSheetDialogFragment.OnMultiImageSelectedListener() {
+                    @Override
+                    public void onImagesSelected(List<Uri> uriList) {
+                        // here is selected image uri list
+                        mViewModel.makeMusicSheet(uriList);
+                    }
+                });
     }
 
     private void showFilteringPopUpMenu(){

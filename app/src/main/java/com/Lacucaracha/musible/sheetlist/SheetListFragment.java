@@ -90,7 +90,8 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
                     @Override
                     public void onImagesSelected(List<Uri> uriList) {
                         // here is selected image uri list
-                        mViewModel.makeMusicSheet(uriList);
+//                        mViewModel.makeMusicSheet(uriList);
+                        mViewModel.getTest();
                     }
                 });
     }

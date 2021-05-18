@@ -8,6 +8,8 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity(tableName="sheet_table",indices = {@Index(value={"title"},unique = true)})
@@ -26,6 +28,12 @@ public final class MusicSheet {
     private final byte[] mMidi;
 
     //constructor
+    @Ignore
+    public MusicSheet(@NonNull byte[]midi){
+        this(getNowTime(),midi);
+
+
+    }
     @Ignore
     public MusicSheet(@NonNull String title, @NonNull byte[] midi) {
         this(UUID.randomUUID().toString(),title,midi);
@@ -46,4 +54,11 @@ public final class MusicSheet {
 
     @NonNull
     public byte[] getMidi() { return mMidi; }
+
+    private static final String getNowTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String time = simpleDateFormat.format(date);
+        return time;
+    }
 }

@@ -16,4 +16,5 @@
     <string name="nav_grid">grid</string>
     <string name="action_gallery">gallery</string>
     <string name="action_camera">camera</string>
+    <string name="BaseURL">http://40.76.140.131:8080</string>
 </resources>

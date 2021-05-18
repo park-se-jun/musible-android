@@ -69,7 +69,7 @@ import com.lacucaracha.musible.ViewModelFactory;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToAddImage(v);
+                mViewModel.getTest();
             }
         });
     }

@@ -37,7 +37,9 @@ public class SheetRepository {
             mSheetDao.insert(sheet);
         });
     }
-
+    public void getTest(){
+        mRetrofitClient.getTest();
+    }
 //    private MultipartBody.Part prepareFilePart(String partName, Uri fileUri){
 //        File file = FileUtil.getPath(fileUri,this);
 //        //requestBody 생성

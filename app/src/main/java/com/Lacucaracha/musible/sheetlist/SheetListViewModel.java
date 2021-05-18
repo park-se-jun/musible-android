@@ -24,7 +24,9 @@ public class SheetListViewModel extends ViewModel {
     }
     //
     //set Filter
-
+    public void getTest(){
+        mRepository.getTest();
+    }
     public void setFilter(SheetFilterType requestType) {
         this.mCurrentFilter = mCurrentFilter;
         switch(requestType){

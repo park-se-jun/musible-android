@@ -19,13 +19,12 @@ import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 
 public interface MyApi {
-    final String base_URL= "http://40.76.140.131:8080";
+    final String base_URL = "http://40.76.140.131:8080";
+
     @GET("/TEST")
     Call<String> getTest();
+
     @Multipart
     @POST("/upload")
-    Call<byte[]> MakeMidi(
-            @PartMap() Map<String, RequestBody> partMap,
-            @Part MultipartBody.Part file);
-
+    Call<byte[]> MakeMidi(@Part List<MultipartBody.Part> file);
 }

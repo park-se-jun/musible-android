@@ -3,6 +3,7 @@ package com.lacucaracha.musible.sheetlist;
 import android.media.Image;
 import android.net.Uri;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -22,7 +23,7 @@ public class SheetListViewModel extends ViewModel {
 
     private final SheetRepository mRepository;
     private List<MultipartBody.Part> mMultiPartBody;
-    private final MutableLiveData<List<MusicSheet>> mItems = new MutableLiveData<>();
+    private final LiveData<List<MusicSheet>> mItems;
     private SheetFilterType mCurrentFilter=SheetFilterType.LIST;
     private List<Uri> ImageUriList;
 
@@ -30,6 +31,7 @@ public class SheetListViewModel extends ViewModel {
         this.mRepository = repository;
         //set initial state
         setFilter(SheetFilterType.LIST);
+        mItems = mRepository.getAllSheets();
     }
     //
     //set Filter
@@ -44,6 +46,10 @@ public class SheetListViewModel extends ViewModel {
             case LIST:
                 break;
         }
+    }
+
+    public LiveData<List<MusicSheet>> getItems() {
+        return mItems;
     }
 
     public void setSelectedImageUri(List<Uri> uriList) {

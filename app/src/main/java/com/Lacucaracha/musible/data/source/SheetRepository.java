@@ -37,7 +37,7 @@ public class SheetRepository {
         mAllSheets=mSheetDao.getMusicSheetOrderByTitle();
         mRetrofitClient=RetrofitClient.getInstance();
     }
-    LiveData<List<MusicSheet>> getAllSheets(){ return mAllSheets; }
+    public LiveData<List<MusicSheet>> getAllSheets(){ return mAllSheets; }
     void insert(MusicSheet sheet){
         SheetDatabase.databaseWriteExecutor.execute(()->
         {

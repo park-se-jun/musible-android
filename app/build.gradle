@@ -42,6 +42,9 @@ dependencies {
 
     //https://github.com/Karumi/Dexter
     implementation 'com.karumi:dexter:6.2.2'
+    
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'

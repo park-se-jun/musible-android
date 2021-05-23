@@ -27,8 +27,6 @@ import okhttp3.RequestBody;
 
 public class SheetRepository {
     private SheetDao mSheetDao;
-    private Retrofit mRetrofit;
-    private MyApi mMyApi;
     private RetrofitClient mRetrofitClient;
     private LiveData<List<MusicSheet>> mAllSheets;
     public SheetRepository(Application application){
@@ -49,6 +47,7 @@ public class SheetRepository {
     }
     public void makeMusicSheet(List<Uri> uriList) {
         List<MultipartBody.Part> requestBody = RequestImages.create(uriList);
+        mRetrofitClient.MakeMidi((ArrayList)requestBody);
         /*
         *
         * midi를 얻는 코드

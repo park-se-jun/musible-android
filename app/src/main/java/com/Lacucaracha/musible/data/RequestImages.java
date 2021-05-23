@@ -15,13 +15,13 @@ public  class RequestImages {
     public static List<MultipartBody.Part> create(List<Uri> uriList) {
         return  makeMultiPartBodyList(uriList);
     }
-    private static List<MultipartBody.Part> makeMultiPartBodyList(List<Uri> uriList){
-        List<MultipartBody.Part> multiPartImages = new ArrayList<>();
+    private static ArrayList<MultipartBody.Part> makeMultiPartBodyList(List<Uri> uriList){
+        ArrayList<MultipartBody.Part> multiPartImages = new ArrayList<>();
         for(Uri uri :uriList){
             File file = new File(uri.getPath());
-            RequestBody requestBody= RequestBody.create(MediaType.parse("image/*"),file);
+            RequestBody requestBody= RequestBody.create(MediaType.parse("Image/jpeg"),file);
             MultipartBody.Part filePart = MultipartBody.Part
-                    .createFormData("Image",file.getName(),requestBody);
+                    .createFormData("files",file.getName(),requestBody);
             multiPartImages.add(filePart);
         }
         return multiPartImages;

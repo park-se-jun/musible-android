@@ -19,19 +19,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sheetList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingTop="?attr/actionBarSize"
                 app:items="@{viewmodel.items}">
 
             </androidx.recyclerview.widget.RecyclerView>

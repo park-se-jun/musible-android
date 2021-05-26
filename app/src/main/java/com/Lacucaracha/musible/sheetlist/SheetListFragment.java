@@ -1,6 +1,7 @@
  package com.lacucaracha.musible.sheetlist;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.net.Uri;
@@ -23,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.lacucaracha.musible.Event;
 import com.lacucaracha.musible.R;
 import com.lacucaracha.musible.ViewModelFactory;
 import com.lacucaracha.musible.data.MusicSheet;
@@ -79,9 +81,7 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
         super.onActivityCreated(savedInstanceState);
         setupFab();
         setupListAdapter();
-        mViewModel.getItems().observe(getViewLifecycleOwner(),items->{
-
-        });
+        setupObserve();
         // TODO: Use the ViewModel
     }
     private void setupListAdapter(){
@@ -97,6 +97,19 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
             @Override
             public void onClick(View v) {
                 popUpSelectImageDialog();
+            }
+        });
+    }
+    private void setupObserve(){
+        mViewModel.getItems().observe(getViewLifecycleOwner(),items->{
+
+        });
+
+        mViewModel.getOpenMusicSheetEvent().observe(getViewLifecycleOwner(), new Observer<Event<String>>() {
+            @Override
+            public void onChanged(Event<String> stringEvent) {
+                String MusicSheetID = stringEvent.getContentIfnotHandled();
+                openMusicSheetDeatail(MusicSheetID);
             }
         });
     }
@@ -131,6 +144,11 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
             return true;
         }));
         popup.show();
+    }
+    public void openMusicSheetDeatail(String MusicSheetID){
+        Bundle bundle = new Bundle();
+        bundle.putString("MusicSheetKey",MusicSheetID);
+        Navigation.findNavController(getView()).navigate(R.id.action_sheetListFragment_to_sheetDetailFragment,bundle);
     }
 
 }

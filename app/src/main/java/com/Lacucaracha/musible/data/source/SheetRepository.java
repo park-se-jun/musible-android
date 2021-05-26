@@ -37,12 +37,17 @@ public class SheetRepository {
         mAllSheets=mSheetDao.getMusicSheetOrderByTitle();
         mRetrofitClient=RetrofitClient.getInstance();
     }
+
     public LiveData<List<MusicSheet>> getAllSheets(){ return mAllSheets; }
+
     void insert(MusicSheet sheet){
         SheetDatabase.databaseWriteExecutor.execute(()->
         {
             mSheetDao.insert(sheet);
         });
+    }
+    public LiveData<MusicSheet> getMusicSheetWithId(String musicSheetId){
+        return mSheetDao.getMusicSheetWithId(musicSheetId);
     }
     public void getTest(){
         mRetrofitClient.getTest();

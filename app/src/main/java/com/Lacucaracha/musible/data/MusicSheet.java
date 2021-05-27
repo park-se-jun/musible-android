@@ -25,24 +25,18 @@ public final class MusicSheet {
 
     @NonNull
     @ColumnInfo(name = "midi")
-    private final byte[] mMidi;
+    private final String mMidi;
 
     //constructor
     @Ignore
-    public MusicSheet(@NonNull byte[]midi){
-        this(getNowTime(),midi);
-
-
-    }
-    @Ignore
-    public MusicSheet(@NonNull String title, @NonNull byte[] midi) {
-        this(UUID.randomUUID().toString(),title,midi);
+    public MusicSheet(@NonNull String title, @NonNull String midiPath) {
+        this(UUID.randomUUID().toString(),title,midiPath);
     }
 
-    public MusicSheet(@NonNull String mId, @NonNull String mTitle, @NonNull byte[] mMidi) {
+    public MusicSheet(@NonNull String mId, @NonNull String mTitle, @NonNull String midiPath) {
         this.mId = mId;
         this.mTitle = mTitle;
-        this.mMidi = mMidi;
+        this.mMidi = midiPath;
     }
 
     //getter
@@ -53,12 +47,6 @@ public final class MusicSheet {
     public String getTitle() { return mTitle; }
 
     @NonNull
-    public byte[] getMidi() { return mMidi; }
+    public String getMidi() { return mMidi; }
 
-    private static final String getNowTime(){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        String time = simpleDateFormat.format(date);
-        return time;
-    }
 }

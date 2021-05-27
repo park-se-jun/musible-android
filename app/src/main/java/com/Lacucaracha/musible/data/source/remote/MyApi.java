@@ -19,6 +19,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Streaming;
 
 public interface MyApi {
     final String base_URL = "http://40.76.140.131:8080";
@@ -27,6 +28,7 @@ public interface MyApi {
     Call<ResponseBody> getTest();
 
     @Multipart
+    @Streaming
     @POST("test/upload")
     Call<ResponseBody> MakeMidi(@Part ArrayList<MultipartBody.Part> file);
 }

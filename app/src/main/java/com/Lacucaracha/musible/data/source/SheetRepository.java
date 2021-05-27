@@ -105,7 +105,7 @@ public class SheetRepository {
     }
     private boolean writeResponseBodyToDisk(ResponseBody body){
         String filename = FileUtil.dateName(System.currentTimeMillis());
-        File file = new File(mContext.getFilesDir(),"Midis/"+filename+".midi");
+        File file = new File(mContext.getFilesDir(),filename+".midi");
         try{
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             IOUtils.write(body.bytes(),fileOutputStream);

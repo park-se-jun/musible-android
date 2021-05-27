@@ -1,5 +1,7 @@
+
 plugins {
     id 'com.android.application'
+    id "androidx.navigation.safeargs"
 }
 
 android {
@@ -15,7 +17,9 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    dataBinding{
+        enabled true
+    }
     buildTypes {
         release {
             minifyEnabled false

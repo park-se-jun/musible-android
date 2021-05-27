@@ -15,11 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lacucaracha.musible.R;
+import com.lacucaracha.musible.ViewModelFactory;
+import com.lacucaracha.musible.databinding.SheetDetailFragmentBinding;
 import com.lacucaracha.musible.sheetlist.SheetListViewModel;
 
 public class SheetDetailFragment extends Fragment {
-
+    public static final String ARGUMENT_MUSICSHEET_ID= "MusicSheetId";
     private SheetDetailViewModel mViewModel;
+    private SheetDetailFragmentBinding mbinding;
     public static SheetDetailFragment newInstance() {
         return new SheetDetailFragment();
     }
@@ -27,16 +30,24 @@ public class SheetDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this).get(SheetDetailViewModel.class);
-        return inflater.inflate(R.layout.sheet_detail_fragment, container, false);
+        mbinding = SheetDetailFragmentBinding.inflate(inflater,container,false);
+        mViewModel = new ViewModelProvider(this,
+                ViewModelFactory.getInstance(this.getActivity().getApplication()))
+                .get(SheetDetailViewModel.class);
+        mbinding.setViewModel(mViewModel);
+        return mbinding.getRoot();
 
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SheetDetailViewModel.class);
         // TODO: Use the ViewModel
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        String cachedId = getArguments().getString(ARGUMENT_MUSICSHEET_ID);
+        mViewModel.start(cachedId);
+    }
 }

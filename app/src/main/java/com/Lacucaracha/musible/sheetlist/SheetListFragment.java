@@ -1,6 +1,7 @@
  package com.lacucaracha.musible.sheetlist;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.net.Uri;
@@ -11,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,17 +24,22 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.lacucaracha.musible.Event;
 import com.lacucaracha.musible.R;
 import com.lacucaracha.musible.ViewModelFactory;
+import com.lacucaracha.musible.data.MusicSheet;
+import com.lacucaracha.musible.databinding.SheetListFragmentBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gun0912.tedbottompicker.TedBottomPicker;
 import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
 
  public class SheetListFragment extends Fragment {
-
     private SheetListViewModel mViewModel;
+    private SheetListFragmentBinding binding;
+    private RecyclerAdapter mRecyclerAdepter;
     public static SheetListFragment newInstance() {
         return new SheetListFragment();
     }
@@ -40,8 +48,17 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        binding = SheetListFragmentBinding.inflate(inflater,container,false);
+        mViewModel = new ViewModelProvider(this,
+                ViewModelFactory.getInstance(this.getActivity().getApplication()))
+                .get(SheetListViewModel.class);
+        binding.setViewmodel(mViewModel);
+        binding.setLifecycleOwner(getActivity());
+
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.sheet_list_fragment, container, false);
+
+        return binding.getRoot();
     }
 
      @Override
@@ -62,20 +79,37 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        mViewModel = new ViewModelProvider(this,
-                ViewModelFactory.getInstance(this.getActivity().getApplication()))
-                .get(SheetListViewModel.class);
         setupFab();
+        setupListAdapter();
+        setupObserve();
         // TODO: Use the ViewModel
     }
+    private void setupListAdapter(){
+        RecyclerView recyclerView= binding.sheetList;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRecyclerAdepter = new RecyclerAdapter();
+        recyclerView.setAdapter(mRecyclerAdepter);
 
+    }
     private void setupFab(){
         FloatingActionButton fab= getActivity().findViewById(R.id.add_image_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popUpSelectImageDialog();
+            }
+        });
+    }
+    private void setupObserve(){
+        mViewModel.getItems().observe(getViewLifecycleOwner(),items->{
+
+        });
+
+        mViewModel.getOpenMusicSheetEvent().observe(getViewLifecycleOwner(), new Observer<Event<String>>() {
+            @Override
+            public void onChanged(Event<String> stringEvent) {
+                String MusicSheetID = stringEvent.getContentIfnotHandled();
+                openMusicSheetDeatail(MusicSheetID);
             }
         });
     }
@@ -110,6 +144,11 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
             return true;
         }));
         popup.show();
+    }
+    public void openMusicSheetDeatail(String MusicSheetID){
+        Bundle bundle = new Bundle();
+        bundle.putString("MusicSheetKey",MusicSheetID);
+        Navigation.findNavController(getView()).navigate(R.id.action_sheetListFragment_to_sheetDetailFragment,bundle);
     }
 
 }

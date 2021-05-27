@@ -54,14 +54,17 @@ public class SheetRepository {
         return INSTANCE;
     }
 
-    LiveData<List<MusicSheet>> getAllSheets(){ return mAllSheets; }
+    public LiveData<List<MusicSheet>> getAllSheets(){ return mAllSheets; }
+
     private void insert(MusicSheet sheet){
         SheetDatabase.databaseWriteExecutor.execute(()->
         {
             mSheetDao.insert(sheet);
         });
     }
-
+    public LiveData<MusicSheet> getMusicSheetWithId(String musicSheetId){
+        return mSheetDao.getMusicSheetWithId(musicSheetId);
+    }
     private void setupRetrofit(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

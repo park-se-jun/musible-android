@@ -13,18 +13,12 @@
         <action
             android:id="@+id/action_sheetListFragment_to_sheetDetailFragment"
             app:destination="@id/sheetDetailFragment" />
-        <action
-            android:id="@+id/action_sheetListFragment_to_imageListDialogFragment"
-            app:destination="@id/imageListDialogFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/sheetDetailFragment"
         android:name="com.lacucaracha.musible.sheetdetail.SheetDetailFragment"
         android:label="sheet_detail_fragment"
-        tools:layout="@layout/sheet_detail_fragment" />
-    <dialog
-        android:id="@+id/imageListDialogFragment"
-        android:name="com.lacucaracha.musible.sheetlist.buttomsheet.ActionListDialogFragment"
-        android:label="fragment_item_list_dialog_list_dialog"
-        tools:layout="@layout/fragment_item_list_dialog_list_dialog" />
+        tools:layout="@layout/sheet_detail_fragment" >
+    </fragment>
 </navigation>

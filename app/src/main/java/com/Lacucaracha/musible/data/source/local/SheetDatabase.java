@@ -2,9 +2,11 @@ package com.lacucaracha.musible.data.source.local;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.lacucaracha.musible.data.MusicSheet;
 
@@ -28,10 +30,25 @@ public abstract class SheetDatabase extends RoomDatabase {
             synchronized (SheetDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            SheetDatabase.class, "sheet.db").build();
+                            SheetDatabase.class, "sheet.db").addCallback(RoomCalback).build();
                 }
             }
         }
         return INSTANCE;
     }
+    private static RoomDatabase.Callback RoomCalback = new RoomDatabase.Callback(){
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db){
+            super.onCreate(db);
+//            databaseWriteExecutor.execute(()->{
+//                SheetDao dao = INSTANCE.sheetDao();
+//                dao.deleteAll();
+//                MusicSheet musicSheet = new MusicSheet("test1",new byte[] {1});
+//                dao.insert(musicSheet);
+//                musicSheet = new MusicSheet("test2",new byte[]{2});
+//                dao.insert(musicSheet);
+//            });
+        }
+    };
+
 }

@@ -1,5 +1,6 @@
 package com.lacucaracha.musible.sheetdetail;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,9 +11,22 @@ import com.lacucaracha.musible.sheetlist.SheetFilterType;
 import java.util.List;
 
 public class SheetDetailViewModel extends ViewModel {
+    private final SheetRepository mRepository;
+    private LiveData<MusicSheet> mMusicSheet;
+
     // TODO: Implement the ViewModel
 
+    public SheetDetailViewModel(SheetRepository repository) {
+        mRepository= repository;
+    }
 
 
-    //LiveData getter
+    public void start(String MusicSheetId){
+        if(MusicSheetId!=null){
+            mMusicSheet = mRepository.getMusicSheetWithId(MusicSheetId);
+        }
+    }
+    public LiveData<MusicSheet> getMusicSheet(){
+        return mMusicSheet;
+    }
 }

@@ -80,7 +80,7 @@ public class FileUtil {
     }
     public static String dateName(long dateToken){
         Date date = new Date(dateToken);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormat.format(date);
     }
 

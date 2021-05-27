@@ -24,8 +24,8 @@ public final class MusicSheet {
     private final String mTitle;
 
     @NonNull
-    @ColumnInfo(name = "midi")
-    private final String mMidi;
+    @ColumnInfo(name = "midiPath")
+    private final String mMidiPath;
 
     //constructor
     @Ignore
@@ -36,7 +36,7 @@ public final class MusicSheet {
     public MusicSheet(@NonNull String mId, @NonNull String mTitle, @NonNull String midiPath) {
         this.mId = mId;
         this.mTitle = mTitle;
-        this.mMidi = midiPath;
+        this.mMidiPath = midiPath;
     }
 
     //getter
@@ -47,6 +47,6 @@ public final class MusicSheet {
     public String getTitle() { return mTitle; }
 
     @NonNull
-    public String getMidi() { return mMidi; }
+    public String getMidiPath() { return mMidiPath; }
 
 }

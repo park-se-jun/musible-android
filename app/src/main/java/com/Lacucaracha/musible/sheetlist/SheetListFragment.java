@@ -91,7 +91,7 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
                     public void onImagesSelected(List<Uri> uriList) {
                         // here is selected image uri list
 //                        mViewModel.makeMusicSheet(uriList);
-                        mViewModel.getTest();
+                        mViewModel.makeMusicSheet(uriList);
                     }
                 });
     }

@@ -15,8 +15,7 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         if(INSTANCE==null){
             synchronized (ViewModelFactory.class){
                 if(INSTANCE==null){
-                    INSTANCE = new ViewModelFactory(
-                            new SheetRepository(application));
+                    INSTANCE = new ViewModelFactory(SheetRepository.getSheetRepository(application));
                 }
             }
         }

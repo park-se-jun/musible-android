@@ -40,14 +40,14 @@ public abstract class SheetDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
-            databaseWriteExecutor.execute(()->{
-                SheetDao dao = INSTANCE.sheetDao();
-                dao.deleteAll();
-                MusicSheet musicSheet = new MusicSheet("test1",new byte[] {1});
-                dao.insert(musicSheet);
-                musicSheet = new MusicSheet("test2",new byte[]{2});
-                dao.insert(musicSheet);
-            });
+//            databaseWriteExecutor.execute(()->{
+//                SheetDao dao = INSTANCE.sheetDao();
+//                dao.deleteAll();
+//                MusicSheet musicSheet = new MusicSheet("test1",new byte[] {1});
+//                dao.insert(musicSheet);
+//                musicSheet = new MusicSheet("test2",new byte[]{2});
+//                dao.insert(musicSheet);
+//            });
         }
     };
 

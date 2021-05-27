@@ -11,6 +11,9 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FileUtil {
     @SuppressLint("NewApi")
     public static String getPath(Uri uri, Context context) {
@@ -75,6 +78,10 @@ public class FileUtil {
     private static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
-
+    public static String dateName(long dateToken){
+        Date date = new Date(dateToken);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(date);
+    }
 
 }

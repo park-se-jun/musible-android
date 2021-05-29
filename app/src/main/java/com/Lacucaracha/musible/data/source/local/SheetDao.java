@@ -20,7 +20,7 @@ public interface SheetDao {
     @Query("DELETE FROM sheet_table")
     void deleteAll();
 
-    @Query("SELECT * FROM sheet_table WHERE entryid=:MusicSheetId")
+    @Query("SELECT * FROM sheet_table WHERE id = :MusicSheetId")
     LiveData<MusicSheet> getMusicSheetWithId(String MusicSheetId);
 
     @Query("SELECT * FROM sheet_table ORDER BY title ASC")

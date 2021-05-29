@@ -36,6 +36,7 @@ public class SheetRepository {
     private static  SheetRepository INSTANCE;
     private SheetDao mSheetDao;
     private LiveData<List<MusicSheet>> mAllSheets;
+    private LiveData<MusicSheet> mSheet;
     private Context mContext;
     private Retrofit mRetrofit;
     private MyApi mMyApi;
@@ -63,7 +64,8 @@ public class SheetRepository {
         });
     }
     public LiveData<MusicSheet> getMusicSheetWithId(String musicSheetId){
-        return mSheetDao.getMusicSheetWithId(musicSheetId);
+        mSheet = mSheetDao.getMusicSheetWithId(musicSheetId);
+        return mSheet;
     }
     private void setupRetrofit(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

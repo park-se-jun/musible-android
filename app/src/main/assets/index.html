@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title> OSMD Raw Javascript Usage Example </title>
+</head>
+<body>
+
+<script src="opensheetmusicdisplay.min.js"></script> <!-- you need to provide the .js file, see README.md-->
+<script src="jQuery3.6.0.js"></script>
+<div id="osmdCanvas"/>
+
+<input type="file" id="files"/>
+<div id="hello"></div>
+<output id="list"></output>
+
+<script src="fileSelectAndLoadOSMD.js"></script>
+
+<script>
+	$(function(){
+		var string = window.Android.getPath();
+		$("#hello").text(string);
+	})
+</script>
+</body>
+</html>

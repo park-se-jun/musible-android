@@ -11,6 +11,7 @@ import com.lacucaracha.musible.sheetlist.SheetFilterType;
 import java.util.List;
 
 public class SheetDetailViewModel extends ViewModel {
+    public static String URL = "file:///android_asset/index.html";
     private final SheetRepository mRepository;
     private LiveData<MusicSheet> mMusicSheet;
 

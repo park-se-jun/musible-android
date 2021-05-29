@@ -16,7 +16,7 @@ import java.util.UUID;
 public final class MusicSheet {
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name="entryid")
+    @ColumnInfo(name="id")
     private final String  mId;
 
     @NonNull

@@ -3,7 +3,7 @@
     >
     <data>
         <variable
-            name="viewModel"
+            name="webViewModel"
             type="com.lacucaracha.musible.sheetdetail.SheetDetailViewModel">
 
         </variable>
@@ -15,10 +15,13 @@
         android:paddingTop="?attr/actionBarSize"
         tools:context=".sheetdetail.SheetDetailFragment">
 
-        <TextView
-            android:layout_width="match_parent"
+        <WebView
+            android:id="@+id/detail_sheet_music"
             android:layout_height="match_parent"
-            android:text="" />
+            android:layout_width="match_parent"
+            >
+
+        </WebView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/playMidi"

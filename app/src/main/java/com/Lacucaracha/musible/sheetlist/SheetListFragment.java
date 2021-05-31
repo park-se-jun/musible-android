@@ -25,6 +25,7 @@ import android.widget.PopupMenu;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lacucaracha.musible.Event;
+import com.lacucaracha.musible.MyApplication;
 import com.lacucaracha.musible.R;
 import com.lacucaracha.musible.ViewModelFactory;
 import com.lacucaracha.musible.data.MusicSheet;
@@ -51,7 +52,7 @@ import gun0912.tedbottompicker.TedBottomSheetDialogFragment;
 
         binding = SheetListFragmentBinding.inflate(inflater,container,false);
         mViewModel = new ViewModelProvider(this,
-                ViewModelFactory.getInstance(this.getActivity().getApplication()))
+                ViewModelFactory.getInstance((MyApplication) this.getActivity().getApplication()))
                 .get(SheetListViewModel.class);
         binding.setViewmodel(mViewModel);
         binding.setLifecycleOwner(getActivity());

@@ -29,6 +29,6 @@ public interface MyApi {
 
     @Multipart
     @Streaming
-    @POST("test/request")
+    @POST("musible/request")
     Call<ResponseBody> MakeMidi(@Part ArrayList<MultipartBody.Part> file);
 }

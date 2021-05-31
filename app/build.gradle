@@ -31,7 +31,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+repositories {
+    maven { url 'https://github.com/kshoji/JFugue-for-Android/raw/master/jfugue-android/snapshot' }
+//    maven { url 'https://github.com/kshoji/USB-MIDI-Driver/raw/master/MIDIDriver/snapshots' }
+    maven { url 'https://jitpack.io' }
+}
 dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -52,7 +56,9 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     implementation 'jp.kshoji:jfugue-android:4.0.3:@aar'
-    implementation 'jp.kshoji:midi-driver:0.1.1:@aar'
+//    implementation 'jp.kshoji:midi-driver:0.1.1:@aar'
+    implementation 'com.github.LeffelMania:android-midi-lib:master-SNAPSHOT'
+    implementation 'com.github.KyoSherlock:MidiDriver:1492bd0ea9'
 
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'

@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Musible"
+        android:name="com.lacucaracha.musible.MyApplication"
         android:usesCleartextTraffic="true">
 
         <activity android:name=".splash.SplashActivity"

@@ -10,6 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.lacucaracha.musible.data.MusicSheet;
 
+import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -40,14 +41,14 @@ public abstract class SheetDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
-//            databaseWriteExecutor.execute(()->{
-//                SheetDao dao = INSTANCE.sheetDao();
-//                dao.deleteAll();
-//                MusicSheet musicSheet = new MusicSheet("test1",new byte[] {1});
-//                dao.insert(musicSheet);
-//                musicSheet = new MusicSheet("test2",new byte[]{2});
-//                dao.insert(musicSheet);
-//            });
+            databaseWriteExecutor.execute(()->{
+                SheetDao dao = INSTANCE.sheetDao();
+                dao.deleteAll();
+                MusicSheet musicSheet = new MusicSheet("Greanade","/data/data/com.lacucaracha.musible/files/Grenade.mid");
+                dao.insert(musicSheet);
+                musicSheet = new MusicSheet("Inuyasha - Affections Touching Across Time","/data/data/com.lacucaracha.musible/files/Inuyasha - Affections Touching Across Time.mid");
+                dao.insert(musicSheet);
+            });
         }
     };
 

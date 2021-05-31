@@ -19,7 +19,7 @@ public  class RequestImages {
         ArrayList<MultipartBody.Part> multiPartImages = new ArrayList<>();
         for(Uri uri :uriList){
             File file = new File(uri.getPath());
-            RequestBody requestBody= RequestBody.create(MediaType.parse("Image/jpeg"),file);
+            RequestBody requestBody= RequestBody.create(MediaType.parse("Image/*"),file);
             MultipartBody.Part filePart = MultipartBody.Part
                     .createFormData("files",file.getName(),requestBody);
             multiPartImages.add(filePart);

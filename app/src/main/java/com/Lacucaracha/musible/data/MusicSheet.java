@@ -26,17 +26,20 @@ public final class MusicSheet {
     @NonNull
     @ColumnInfo(name = "midiPath")
     private final String mMidiPath;
-
+    @NonNull
+    @ColumnInfo(name = "mxlPath")
+    private final String mMxlPath;
     //constructor
     @Ignore
-    public MusicSheet(@NonNull String title, @NonNull String midiPath) {
-        this(UUID.randomUUID().toString(),title,midiPath);
+    public MusicSheet(@NonNull String title, @NonNull String midiPath,@NonNull String mxlPath) {
+        this(UUID.randomUUID().toString(),title,midiPath,mxlPath);
     }
 
-    public MusicSheet(@NonNull String mId, @NonNull String mTitle, @NonNull String midiPath) {
+    public MusicSheet(@NonNull String mId, @NonNull String mTitle, @NonNull String midiPath,@NonNull String mxlPath) {
         this.mId = mId;
         this.mTitle = mTitle;
         this.mMidiPath = midiPath;
+        this.mMxlPath = mxlPath;
     }
 
     //getter
@@ -48,5 +51,7 @@ public final class MusicSheet {
 
     @NonNull
     public String getMidiPath() { return mMidiPath; }
+    @NonNull
+    public String getMxlPath() { return mMxlPath;}
 
 }

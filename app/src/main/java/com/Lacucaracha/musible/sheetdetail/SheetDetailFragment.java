@@ -1,19 +1,24 @@
 package com.lacucaracha.musible.sheetdetail;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ActionBar;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.webkit.WebViewAssetLoader;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -66,11 +71,28 @@ public class SheetDetailFragment extends Fragment {
     private void setupWebView(){
         WebView webView =mbinding.detailSheetMusic;
         WebSettings settings =webView.getSettings();
-
+//        final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
+//                .addPathHandler("/assets/",new WebViewAssetLoader.AssetsPathHandler(getContext()))
+//                .addPathHandler(getContext().getFilesDir().getPath(),new WebViewAssetLoader.InternalStoragePathHandler(getContext(),getContext().getFilesDir()))
+//                .build();
         settings.setJavaScriptEnabled(true);
         settings.setAllowFileAccess(true);
-        settings.getAllowUniversalAccessFromFileURLs();
+        settings.setAllowContentAccess(true);
+        settings.setAllowFileAccessFromFileURLs(true);
+        settings.setAllowUniversalAccessFromFileURLs(true);
         webView.loadUrl(mViewModel.URL);
+//        webView.setWebViewClient(new WebViewClient(){
+//
+//            @Nullable
+//            @Override
+//            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+//                return assetLoader.shouldInterceptRequest(request.getUrl());
+//            }
+//        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.setWebContentsDebuggingEnabled(true);
+        }
 //        webView.addJavascriptInterface(
 //                new WebAppInterface( mViewModel.getMusicSheet().getValue() )
 //                ,"Android");

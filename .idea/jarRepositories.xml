@@ -21,5 +21,35 @@
       <option name="name" value="Google" />
       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="https://github.com/kshoji/USB-MIDI-Driver/raw/master/MIDIDriver/snapshots" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://github.com/kshoji/JFugue-for-Android/raw/master/jfugue-android/snapshot" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://github.com/kshoji/JFugue-for-Android/raw/master/jfugue-android" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://github.com/kshoji/JFugue-for-Android" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="https://github.com/kshoji/USB-MIDI-Driver/raw/master/library/repository" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="https://github.com/kshoji/javax.sound.midi-for-Android/raw/master/javax.sound.midi/repository" />
+    </remote-repository>
   </component>
 </project>

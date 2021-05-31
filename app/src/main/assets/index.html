@@ -4,21 +4,20 @@
 </head>
 <body>
 
-<script src="opensheetmusicdisplay.min.js"></script> <!-- you need to provide the .js file, see README.md-->
-<script src="jQuery3.6.0.js"></script>
+<script src="file:///android_asset/opensheetmusicdisplay.min.js"></script> <!-- you need to provide the .js file, see README.md-->
+<script src="file:///android_asset/jQuery3.6.0.js"></script>
 <div id="osmdCanvas"/>
 
-<input type="file" id="files"/>
 <div id="hello"></div>
-<output id="list"></output>
-
-<script src="fileSelectAndLoadOSMD.js"></script>
-
 <script>
-	$(function(){
-		var string = window.Android.getPath();
-		$("#hello").text(string);
-	})
+	var mxlPath = "file://"+window.Android.getMxlPath();
+	$("#hello").append(mxlPath);
+  	var osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("osmdCanvas");
+  	osmd.load("2021-05-31 10_22_55.musicxml").then(function(){
+  		osmd.render();
+  	})
+
 </script>
+
 </body>
 </html>

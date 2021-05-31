@@ -15,6 +15,11 @@ import com.lacucaracha.musible.data.source.remote.MyApi;
 import com.lacucaracha.musible.util.FileUtil;
 
 import org.apache.commons.io.IOUtils;
+import org.jfugue.MidiParser;
+import org.jfugue.MusicStringParser;
+import org.jfugue.MusicStringRenderer;
+import org.jfugue.MusicXmlRenderer;
+import org.jfugue.Pattern;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,6 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import jp.kshoji.javax.sound.midi.MidiSystem;
+import jp.kshoji.javax.sound.midi.Sequence;
+import nu.xom.Serializer;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -110,17 +118,55 @@ public class SheetRepository {
     }
     private boolean writeResponseBodyToDisk(ResponseBody body){
         String filename = FileUtil.dateName(System.currentTimeMillis());
-        File file = new File(mContext.getFilesDir(),filename+".midi");
+        File midiFile = new File(mContext.getFilesDir(),filename+".midi");
+        File musicXMLFile;
         try{
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            FileOutputStream fileOutputStream = new FileOutputStream(midiFile);
             IOUtils.write(body.bytes(),fileOutputStream);
-            MusicSheet musicSheet = new MusicSheet(file.getName(),file.getCanonicalPath());
+            musicXMLFile = writeMidiToMusicXML(midiFile,filename);
+
+            if(musicXMLFile == null) throw new Exception("invalid musicXML");
+            MusicSheet musicSheet = new MusicSheet(
+                    filename,
+                    midiFile.getCanonicalPath(),
+                    musicXMLFile.getCanonicalPath());
             insert(musicSheet);
             return true;
         }catch(Exception e){
-            file.delete();
+            midiFile.delete();
             return false;
         }finally {
         }
+    }
+    private File writeMidiToMusicXML(File midiFile, String filename){
+        File musicXMLFile = new File(mContext.getFilesDir(),filename + ".musicxml");
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream(musicXMLFile);
+            MidiParser parser = new MidiParser();
+            MusicStringParser stringParser = new MusicStringParser();
+            MusicStringRenderer renderer = new MusicStringRenderer();
+            MusicXmlRenderer listener = new MusicXmlRenderer();
+            parser.addParserListener(renderer);
+            stringParser.addParserListener(listener);
+            Sequence sequence = MidiSystem.getSequence(midiFile);
+            parser.parse(MidiSystem.getSequence(midiFile));
+            Pattern pattern = renderer.getPattern();
+            stringParser.parse(pattern);
+            Serializer serializer = new Serializer(fileOutputStream, "UTF-8");
+            serializer.setIndent(4);
+            serializer.write(listener.getMusicXMLDoc());
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            return musicXMLFile;
+        }catch(Exception e){
+            musicXMLFile.delete();
+            return null;
+        }finally{
+        }
+
+
+
+
+
     }
 }

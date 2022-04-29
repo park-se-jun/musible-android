@@ -1,5 +1,5 @@
 # Musible
-Muisble backend Repository
+Muisble android Repository
 
 ![logo](readme/img/logo.png)
 
